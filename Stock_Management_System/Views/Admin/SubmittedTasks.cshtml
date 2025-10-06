@@ -1,0 +1,141 @@
+﻿@model List<Task_Management_System.Models.Tasks>
+@{
+    ViewData["Title"] = "SubmittedTasks";
+    Layout = "_AdminLayout";
+
+}
+<div class="container mt-5">
+
+    <h1 class="h1 pt-5 px-5">Submitted Tasks:</h1>
+    <hr />
+    <table class="table table-hover shadow mt-4">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>#</th>
+                <th>Employee</th>
+                <th>Task Title</th>
+                <th>Task Description</th>
+                <th>Task Price</th>
+                <th>Task Deadline</th>
+                <th>Task Status</th>
+                <th>Task Feedback</th>
+                <th>Assign From</th>
+                <th>Submitted Task</th>
+                <th>Submitted at</th>
+                <th>Assigned at</th>
+                <th>Updated at</th>
+                <th>Approve</th>
+                <th>Reject</th>
+            </tr>
+        </thead>
+
+
+        <tbody class="table-secondary">
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <th>No Records Found!</th>
+                </tr>
+            }
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td>@task.Task_Id</td>
+                    <td>@task.users.U_Name</td>
+                    <td>@task.Title</td>
+                    <td>@task.Desc</td>
+                    <td>$@task.Price</td>
+                    <td>@task.DeadLine</td>
+
+                    @if (task.Status == 0)
+                    {
+                        <td class="text-warning fw-bold">Pending...</td>
+                    }
+                    else if (task.Status == 1)
+                    {
+                        <td class="text-success fw-bold">Submitted...</td>
+
+
+                    }
+                    else if (task.Status == 2)
+                    {
+                        <td class="text-danger fw-bold">Expired</td>
+
+                    }
+                    else if (task.Status == 3)
+                    {
+                        <td class="text-success fw-bold">Approved!</td>
+
+                    }
+                    else if (task.Status == 4)
+                    {
+                        <td class="text-danger fw-bold">Rejected!</td>
+
+                    }
+
+                    <td>@task.Feedback</td>
+                    <td>@task.From</td>
+
+                    @if (task.SubmittedWorkPath == null)
+                    {
+                        <td class="text-black ">No data yet!...</td>
+
+                    }
+                    else
+                    {
+
+                        <td>
+                            @if (!string.IsNullOrEmpty(task.SubmittedWorkPath))
+                            {
+                                
+                            <a href="@task.SubmittedWorkPath" class="text-primary" download>Download...</a>
+                            }
+                            </td>
+                    }
+
+                    @if (task.SubmitedAt == null)
+                    {
+                        <td class="text-black ">No data yet!...</td>
+
+                    }
+                    else
+                    {
+
+
+                        <td>@task.SubmitedAt</td>
+                    }
+
+
+
+
+
+                    <td>@task.CreatedAt</td>
+
+
+
+                    @if (task.UpdatedAt == null)
+                    {
+                        <td class="text-black ">No data yet!...</td>
+
+                    }
+                    else
+                    {
+
+                        <td>@task.UpdatedAt</td>
+                    }
+
+                    <td><a asp-route-id="@task.Task_Id" asp-action="ApproveTask" asp-controller="Admin" class="btn btn-outline-success">Approve</a> </td>
+                    <td><a asp-route-id="@task.Task_Id" asp-action="RejectTask" asp-controller="Admin" class="btn btn-outline-danger">Reject</a> </td>
+
+
+                  
+
+                </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+</div>
+

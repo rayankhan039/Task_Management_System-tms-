@@ -1,0 +1,48 @@
+﻿@using Task_Management_System.Models
+@model Users
+
+@{
+    ViewData["Title"] = "Edit User";
+    Layout = "_AdminLayout";
+}
+
+<div class="container p-5 align-content-center">
+
+
+    <h1 class="h1 text-black">Edit User:</h1>
+
+    <form method="post">
+        <input asp-for="U_Id" hidden/>
+        <div class="col-lg-6 mx-auto mt-4 p-1">
+
+            <label asp-for="U_Name"></label>
+            <input type="text" asp-for="U_Name" class="form-control" placeholder="Enter Name" />
+            <span asp-validation-for="U_Name" class="text-danger"></span>
+        </div>
+
+        <div class="col-lg-6 mx-auto mt-4 p-1">
+            <label asp-for="U_Email"></label>
+            <input type="text" asp-for="U_Email" class="form-control" placeholder="Enter Email" />
+            <span asp-validation-for="U_Email" class="text-danger"></span>
+
+        </div>
+
+        <div class="col-lg-6 mx-auto mt-4 p-1">
+            <label asp-for="U_Password"></label>
+            <input type="text" asp-for="U_Password" class="form-control" placeholder="Enter Password" />
+            <span asp-validation-for="U_Password" class="text-danger"></span>
+
+        </div>
+
+        <div class="col-lg-6 mx-auto mt-4 p-1">
+            <input type="submit" class="btn btn-primary" value="Update" />
+        </div>
+
+
+    </form>
+
+
+
+
+</div>
+

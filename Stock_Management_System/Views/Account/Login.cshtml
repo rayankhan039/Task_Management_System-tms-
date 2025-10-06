@@ -1,0 +1,57 @@
+﻿@using Task_Management_System.ViewModels
+@model LoginVM
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_LoginLayout";
+}
+
+<div class="container p-5 align-content-center">
+    <h1 class="h1 text-center text-black">Login Here</h1>
+    <hr class="mx-auto w-50" />
+    <form method="post">
+       
+
+        <div class="col-lg-6 mx-auto mt-4 p-1">
+            <label asp-for="Email"></label>
+            <input type="text" asp-for="Email" name="email" class="form-control" placeholder="Enter Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="col-lg-6 mx-auto mt-4 p-1">
+            <label asp-for="Password"></label>
+            <div class="input-group">
+            <input type="password" asp-for="Password" name="password" id="password" class="form-control" placeholder="Enter Password" />
+            <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('password')">
+                show
+
+            </button>
+            </div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+        </div>
+
+        
+
+        <div class="col-lg-6 mx-auto mt-4 p-1">
+            <input type="submit" class="btn btn-secondary w-50 mx-auto d-grid py-2 rounded" value="Login" />
+        </div>
+
+        
+    </form>
+
+
+
+    </div>
+
+            @section Scripts {
+    <script>
+        function togglePassword(fieldId) {
+            var input = document.getElementById(fieldId);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+    </script>
+}

@@ -1,0 +1,26 @@
+﻿@model Task_Management_System.Models.Tasks
+
+@{
+    ViewData["Title"] = "RejectTask";
+    Layout = "_AdminLayout";
+
+}
+
+
+<h1>Reject Task - @Model.Title</h1>
+
+
+<form asp-action="RejectTask" method="post">
+
+    <input type="hidden" name="Task_Id" value="@Model.Task_Id" />
+
+    <div class="form-group">
+        <label for="Feedback">Feedback</label>
+        <textarea asp-for="Feedback" class="form-control" required></textarea>
+
+    </div>
+
+    <button type="submit" class="btn btn-danger mt-3">Submit & Reject</button>
+
+</form>
+

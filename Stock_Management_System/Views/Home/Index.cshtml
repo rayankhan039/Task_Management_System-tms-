@@ -1,0 +1,147 @@
+﻿@model List<Task_Management_System.Models.Tasks>
+@{
+    ViewData["Title"] = "Home Page";
+}
+@* ----------------------------------cards start-------------------------------- *@
+
+<div class="container">
+    <h1 class="h1 text-center mt-2 pb-5">
+        Welcome, @User.Identity.Name 👋
+    </h1>
+    <h2 class="h2 p-3">No.of Tasks With Status:</h2>
+
+    <div class="row ps-5">
+        <div class="col-lg-4">
+            <div class="card bg-success w-75 p-3 pb-4 border-rounded shadow">
+                <h3 class="text-white text-start pb-4">Approved tasks</h3>
+                <h5 class="text-white text-center">@ViewBag.approvedtask</h5>
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card bg-warning w-75 p-3 pb-4 border-rounded shadow">
+                <h3 class="text-white text-start pb-4">Pending tasks</h3>
+                <h5 class="text-white text-center">@ViewBag.pendingtask</h5>
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card bg-danger w-75 p-3 pb-4 border-rounded shadow">
+                <h3 class="text-white text-start pb-4">Rejected tasks</h3>
+                <h5 class="text-white text-center">@ViewBag.rejectedtask</h5>
+            </div>
+
+        </div>
+       
+    </div> @* 1st row end *@
+
+
+    <div class="row ps-5 justify-content-center mt-3">
+
+
+        <div class="col-lg-4 mt-4">
+            <div class="card bg-primary w-75 p-3 pb-4 border-rounded shadow">
+                <h3 class="text-white text-start pb-4">Submitted tasks</h3>
+                <h5 class="text-white text-center">@ViewBag.submitedtask</h5>
+            </div>
+
+        </div>
+
+        <div class="col-lg-4 mt-4">
+            <div class="card bg-secondary w-75 p-3 pb-4 border-rounded shadow">
+                <h3 class="text-white text-start pb-4">Expired tasks</h3>
+                <h5 class="text-white text-center">@ViewBag.expiredtask</h5>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+@* ----------------------------------cards end-------------------------------- *@
+
+@*---------------------------------------- User's Tasks Section ---------------------------------------------*@
+<section class="tasks container-fluid">
+    <div class="container mt-5">
+        <h1 class="h1 p-3">Your Pending Tasks:</h1>
+        <table class="table table-hover shadow">
+            <thead class="bg-dark text-white">
+                <tr>
+                    
+                    <th>Your Name</th>
+                    <th>Task Title</th>
+                    <th>Task Description</th>
+                    <th>Task Price</th>
+                    <th>Task Deadline</th>
+                    <th>Task Status</th>
+                    <th>Assign From</th>
+                    <th>Assigned at</th>
+                    <th>Updated at</th>
+                    <th>Submit Task</th>
+
+                </tr>
+            </thead>
+
+
+            <tbody class="table-secondary">
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+                        <th>No Tasks Found!</th>
+                    </tr>
+                }
+                @foreach (var task in Model)
+                {
+                    <tr>
+                     
+                        <td>@task.users.U_Name</td>
+                        <td>@task.Title</td>
+                        <td>@task.Desc</td>
+                        <td>$@task.Price</td>
+                        <td>@task.DeadLine</td>
+
+                        
+                        
+                            <td class="text-warning fw-bold">Pending...</td>
+                        
+
+
+
+
+                        <td>@task.From</td>
+                        <td>@task.CreatedAt</td>
+                        @if (task.UpdatedAt == null)
+                        {
+                            <td class="text-black ">No data yet!...</td>
+
+                        }
+                        else
+                        {
+                            
+                        <td>@task.UpdatedAt</td>
+                        }
+
+                    <td><a asp-route-id="@task.Task_Id" asp-action="SubmitTask" asp-controller="Home" class="btn btn-primary">Submit Task</a></td>
+                        
+                    </tr>
+                }
+
+            </tbody>
+
+
+        </table>
+
+
+
+
+    </div>
+
+</section>
+@*---------------------------------------- User's Tasks Section ---------------------------------------------*@

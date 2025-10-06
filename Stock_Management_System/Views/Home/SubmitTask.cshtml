@@ -1,0 +1,22 @@
+﻿@model Task_Management_System.Models.Tasks
+@{
+    ViewData["Title"] = "SubmitTask";
+}
+
+<h1>Submit Task - @Model.Title</h1>
+
+
+<form asp-action="SubmitTask" method="post" enctype="multipart/form-data">
+    
+<input type="hidden" name="Task_Id" value="@Model.Task_Id" />
+
+<div class="form-group">
+    <label>Select your work (.zip & .rar only)</label>
+    <input type="file" name="WorkFile" accept=".zip,.rar" class="form-control" required />
+
+</div>
+ 
+<button type="submit" class="btn btn-success mt-3">Submit</button>
+
+</form>
+

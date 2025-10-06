@@ -1,0 +1,49 @@
+﻿@model List<Task_Management_System.Models.Users>
+@{
+    ViewData["Title"] = "View User";
+    Layout = "_AdminLayout";
+}
+<div class="container p-5 align-content-center">
+    <h1 class="h1 text-black">View User:</h1>
+    <hr />
+    <table class="table table-hover shadow mt-4">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>#</th>
+                <th>Employee Name</th>
+                <th>Employee Email</th>
+                <th>Employee Wallet</th>
+                <th>Registered_At</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <th>No Records Found!</th>
+                </tr>
+
+            }
+            else
+            {
+                @foreach (var emp in Model)
+                {
+                    <tr>
+                        <td>@emp.U_Id</td>
+                        <td>@emp.U_Name</td>
+                        <td>@emp.U_Email</td>
+                        <td>@emp.U_Wallet</td>
+                        <td>@emp.RegisteredAt</td>
+                        <td><a asp-route-id="@emp.U_Id" asp-action="EditUser" asp-controller="Admin"  class="btn btn-warning">Edit</a></td>
+                        <td><a asp-route-id="@emp.U_Id" asp-action="DeleteUser" asp-controller="Admin"  class="btn btn-danger">Delete</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+</table>
+
+
+</div>

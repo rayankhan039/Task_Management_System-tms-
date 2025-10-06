@@ -1,0 +1,117 @@
+﻿@model List<Task_Management_System.Models.WalletTransaction>
+@{
+    ViewData["Title"] = "Wallet";
+}
+<div class="Container mt-4">
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card p-3 rounded shadow">
+                <p class="mt-3">  <i class="bi bi-wallet2 fw-bold text-black h1 p-4 my-5"></i><span class="h3 ">Wallet Balance:</span></p>
+                <h1 class="h1 mx-auto mb-3">@ViewBag.Balance.ToString("C")</h1>
+                <button class="btn btn-primary mt-2">Withdraw</button>
+            </div>
+
+        </div>
+        @* col end *@
+
+        <div class="col-lg-8">
+            <div class="card p-3 border-rounded shadow rounded"> 
+
+                <h3 class="h3">Unread Notifications:</h3>
+                @if (ViewBag.Unread.Count == 0)
+                {
+                    <h5>No History Found Yet!...</h5>
+                }
+                @foreach(var item in ViewBag.Unread ) 
+                {
+                    <div class="list-group-item d-flex justify-content-between align-content-center">
+                        <div>
+                            <strong>
+                                @if (item.TransactionType == "Credit")
+                                {
+                                    <span class="text-success">+ @item.Amount.ToString("C")</span>
+
+                                }
+                                else
+                                {
+                                    <span class="text-danger">- @item.Amount.ToString("C")</span>
+
+                                }
+                            </strong>
+
+                            <p class="mb-1">@item.Description</p>
+                            <small class="text-muted">@item.CreatedAt.ToString()</small>
+                        </div>
+
+                        <div>
+                            @if (item.TransactionType == "Credit")
+                            {
+                                <span class="badge bg-success">Credit</span>
+
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Debit</span>
+
+                            }
+                        </div>
+
+                    </div>
+                } 
+            </div> 
+
+        </div>
+        @* col end *@
+
+    </div> 
+    @* row end *@
+    <div class="card p-3 mt-5 shadow rounded">
+    <h2 class="h2">Wallet History:</h2>
+    @if (Model.Count == 0)
+    {
+        <h5>No History Found Yet!...</h5>
+    }
+    @foreach(var item in Model)
+    {
+       
+            <div class="list-group-item d-flex justify-content-between align-content-center">
+                <div>
+                    <strong>
+                        @if (item.TransactionType == "Credit")
+                        {
+                            <span class="text-success">+ @item.Amount.ToString("C")</span>
+
+                        }
+                        else
+                        {
+                            <span class="text-danger">- @item.Amount.ToString("C")</span>
+
+                        }
+                    </strong>
+
+                    <p class="mb-1">@item.Description</p>
+                    <small class="text-muted">@item.CreatedAt.ToString()</small>
+                </div>
+
+                <div>
+                    @if (item.TransactionType == "Credit")
+                    {
+                        <span class="badge bg-success">Credit</span>
+
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Debit</span>
+
+                    }
+                </div>
+
+            </div>
+        }
+    
+    </div>
+
+
+</div>
+

@@ -1,0 +1,23 @@
+﻿@model Task_Management_System.Models.Tasks
+@{
+    ViewData["Title"] = "ApproveTask";
+    Layout = "_AdminLayout";
+}
+
+<h1>Approve Task - @Model.Title</h1>
+
+
+<form asp-action="ApproveTask" method="post">
+
+    <input type="hidden" name="Task_Id" value="@Model.Task_Id" />
+
+    <div class="form-group">
+        <label for="Feedback">Feedback</label>
+      <textarea asp-for="Feedback" class="form-control" required></textarea>
+
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Submit & Approve</button>
+
+</form>
+

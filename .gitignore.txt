@@ -1,0 +1,33 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build outputs
+bin/
+obj/
+
+# Rider
+.idea/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# User-specific files
+*.userosscache
+*.sln.docstates
+
+# ASP.NET
+appsettings.*.Local.json
+appsettings.Secrets.json
+
+# VS Code
+.vscode/
+
+# Node (if any)
+node_modules/
+
+# Backup files
+*.log
+*.db
